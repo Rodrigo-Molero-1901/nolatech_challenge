@@ -1,0 +1,17 @@
+name: nolatech_challenge
+packages:
+  - .
+
+scripts:
+  clean:
+    run: flutter clean
+  get:
+    run: flutter pub get
+  br:
+    run: flutter pub run build_runner build -d
+  intl:
+    run: flutter gen-l10n
+  format:
+    run: dart format .
+  generate:
+    run: melos run br && melos run intl

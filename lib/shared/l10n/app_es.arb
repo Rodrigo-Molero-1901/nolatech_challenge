@@ -1,0 +1,41 @@
+{
+  "w_login_button": "Iniciar sesión",
+  "w_register_button": "Registrarme",
+  "l_login_title": "Iniciar sesión",
+  "l_email_field": "Email",
+  "l_password_field": "Contraseña",
+  "l_remember_password_check": "Recordar contraseña",
+  "l_forgot_password_hint": "¿Olvidaste tu contraseña?",
+  "l_login_button": "Iniciar sesión",
+  "l_register_hint": "¿Aún no tienes cuenta?  <b>Regístrate</b>",
+  "r_register_title": "Registro",
+  "r_name_field": "Nombre y apellido",
+  "r_email_field": "email",
+  "r_phone_number_field": "Teléfono",
+  "r_password_field": "Contraseña",
+  "r_confirm_password_field": "Confirmar contraseña",
+  "r_register_button": "Registrarme",
+  "r_login_hint": "Ya tengo cuenta  <b>Iniciar sesión</b>",
+  "h_header_title_1": "Tennis",
+  "h_header_title_2": "court",
+  "h_welcome_title": "Hola {userFirstName}!",
+  "@h_welcome_title": {
+    "placeholders": {
+      "userFirstName": {
+        "type": "String"
+      }
+    }
+  },
+  "h_reservations_section": "Canchas",
+  "h_reservations_type": "Cancha tipo {reservationType}",
+  "@h_reservations_type": {
+    "placeholders": {
+      "reservationType": {
+        "type": "String"
+      }
+    }
+  },
+  "h_reservations_button": "Reservar",
+  "h_scheduled_reservation_section": "Reservas programadas",
+  "h_empty_scheduled_reservations": "¡Ups! Parece que todavía no has hecho ninguna reserva ☹️"
+}
