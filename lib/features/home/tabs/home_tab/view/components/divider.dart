@@ -1,4 +1,4 @@
-part of '../home_page.dart';
+part of '../home_tab_page.dart';
 
 class _Divider extends StatelessWidget {
   const _Divider();

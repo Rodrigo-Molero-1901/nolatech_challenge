@@ -26,8 +26,8 @@ class AppButton extends StatelessWidget {
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
-        borderRadius: BorderRadius.circular(AppDimensions.borderRadius2x),
         onTap: onTap,
+        borderRadius: BorderRadius.circular(AppDimensions.borderRadius2x),
         child: Ink(
           height: height,
           width: width,

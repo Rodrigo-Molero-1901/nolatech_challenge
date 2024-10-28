@@ -14,8 +14,6 @@ class Reservation {
   int price;
   String comment;
 
-  final users = ToMany<User>();
-
   Reservation({
     this.objectId = 0,
     required this.name,

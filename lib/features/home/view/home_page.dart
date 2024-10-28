@@ -2,22 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
-import 'package:nolatech_challenge/core/core.dart';
-import 'package:nolatech_challenge/shared/shared.dart';
+import 'package:nolatech_challenge/di/injection.dart';
 
+import '../../../../shared/shared.dart';
 import '../../common/params/home_params.dart';
+import '../tabs/home_tab/view/home_tab_page.dart';
 import '../presentation/home_cubit.dart';
-import '../presentation/viewmodels/home_view_model.dart';
-import '../presentation/viewmodels/reservation_carousel_view_model.dart';
 
-part 'components/divider.dart';
+part 'components/bottom_bar.dart';
 part 'components/header.dart';
-part 'components/home_navigation.dart';
-part 'components/home_view.dart';
-part 'components/reservation_list.dart';
-part 'components/user_reservation_list.dart';
 
 @injectable
 class HomePage extends StatefulWidget {
@@ -40,7 +34,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _cubit = widget._cubit;
-    _cubit.initialize(userId: widget.params.loggedUserId);
+    _cubit.initialize();
   }
 
   @override
@@ -48,23 +42,27 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: AppContextColors.background,
       body: SafeArea(
-        child: BlocConsumer<HomeCubit, HomeState>(
+        child: BlocBuilder<HomeCubit, HomeState>(
           bloc: _cubit,
-          listener: (context, state) {
-            if (state case HomeMain(:final viewModel)) {
-              if (viewModel.navigation != null) {
-                viewModel.navigation!.navigate(context);
-              }
-            }
-          },
           builder: (context, state) {
-            return switch (state) {
-              HomeInitial() => const SizedBox.shrink(),
-              HomeMain(:final viewModel) => _HomeView(
-                  cubit: _cubit,
-                  viewModel: viewModel,
+            return Column(
+              children: [
+                const _Header(),
+                Expanded(
+                  child: switch (state) {
+                    HomeInitial() => const SizedBox.shrink(),
+                    HomeTab() => injector<HomeTabPage>(
+                        param1: widget.params,
+                      ),
+                    ReservationListTab() => Text('ga'),
+                    FavoriteListTab() => Text('ga2'),
+                  },
                 ),
-            };
+                _BottomBar(
+                  cubit: _cubit,
+                ),
+              ],
+            );
           },
         ),
       ),

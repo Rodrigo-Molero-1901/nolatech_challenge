@@ -1,4 +1,4 @@
-import '../../../common/data/models/reservation_model.dart';
+import 'package:nolatech_challenge/features/common/data/models/reservation_model.dart';
 
 class CarouselReservationViewModel {
   final String name;

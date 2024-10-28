@@ -12,12 +12,6 @@ class User {
   String email;
   String password;
 
-  @Backlink()
-  final reservations = ToMany<Reservation>();
-
-  @Backlink()
-  final favoriteReservations = ToMany<Reservation>();
-
   User({
     this.objectId = 0,
     required this.name,

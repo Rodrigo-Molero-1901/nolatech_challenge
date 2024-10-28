@@ -56,6 +56,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get r_login_hint => 'Ya tengo cuenta  <b>Iniciar sesión</b>';
 
   @override
+  String get h_bottom_bar_label_1 => 'Inicio';
+
+  @override
+  String get h_bottom_bar_label_2 => 'Reservas';
+
+  @override
+  String get h_bottom_bar_label_3 => 'Favoritos';
+
+  @override
   String get h_header_title_1 => 'Tennis';
 
   @override

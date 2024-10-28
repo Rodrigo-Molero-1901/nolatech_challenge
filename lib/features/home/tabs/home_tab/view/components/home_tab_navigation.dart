@@ -1,6 +1,6 @@
-part of '../home_page.dart';
+part of '../home_tab_page.dart';
 
-extension _NavigationExtension on HomeNavigationViewModel {
+extension _NavigationExtension on HomeTabNavigationViewModel {
   void navigate(BuildContext context) {
     switch (this) {
       case ReservationNavigation(:final params):

@@ -1,9 +1,9 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../common/data/models/reservation_model.dart';
-import '../../../common/data/models/user_model.dart';
-import '../../../common/domain/repositories/reservation_repository.dart';
+import '../../data/models/reservation_model.dart';
+import '../../data/models/user_model.dart';
+import '../repositories/reservation_repository.dart';
 
 @injectable
 class GetUserReservationsUseCase {

@@ -4,10 +4,8 @@ sealed class HomeState {}
 
 class HomeInitial extends HomeState {}
 
-class HomeMain extends HomeState {
-  final HomeViewModel viewModel;
+class HomeTab extends HomeState {}
 
-  HomeMain({
-    required this.viewModel,
-  });
-}
+class ReservationListTab extends HomeState {}
+
+class FavoriteListTab extends HomeState {}

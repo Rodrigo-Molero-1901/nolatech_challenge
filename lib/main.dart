@@ -29,7 +29,6 @@ class _MyAppState extends State<MyApp> {
 
   GoRouter _createRouter() {
     return GoRouter(
-      debugLogDiagnostics: true,
       initialLocation: Routes.pathWelcome,
       routes: [
         GoRoute(

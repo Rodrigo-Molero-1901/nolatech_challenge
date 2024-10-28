@@ -6,32 +6,34 @@ import '../../utils/mocks.dart';
 
 class ReservationApi {
   final Store _store;
-  late final Box<User> _userBox;
-  late final Box<Reservation> _reservationBox;
+  late final Box<User> _user;
+  late final Box<Reservation> _reservation;
+  late final Box<ScheduleLink> _scheduleLink;
+  late final Box<FavoriteLink> _favoriteLink;
 
   ReservationApi(
     this._store,
   ) {
-    _userBox = _store.box<User>();
-    _reservationBox = _store.box<Reservation>();
+    _user = _store.box<User>();
+    _reservation = _store.box<Reservation>();
+    _scheduleLink = _store.box<ScheduleLink>();
+    _favoriteLink = _store.box<FavoriteLink>();
   }
 
   List<Reservation> getReservations() {
     debugPrint('Obteniendo lista de reservas...');
-    var allReservations = _reservationBox.getAll();
+    var allReservations = _reservation.getAll();
     if (allReservations.isEmpty) {
       debugPrint('Creando reservas ficticias...');
-      _reservationBox.putMany(reservationMockList);
-      allReservations = _reservationBox.getAll();
+      _reservation.putMany(reservationMockList);
+      allReservations = _reservation.getAll();
     }
     return allReservations;
   }
 
   Reservation? getReservationById({required int reservationId}) {
-    final reservation = _reservationBox
-        .query(
-          Reservation_.objectId.equals(reservationId),
-        )
+    final reservation = _reservation
+        .query(Reservation_.objectId.equals(reservationId))
         .build()
         .findFirst();
 
@@ -45,49 +47,75 @@ class ReservationApi {
   }
 
   void scheduleReservation({required int reservationId, required int userId}) {
-    final user = _userBox.get(userId);
-    if (user == null) return;
+    final user = _user.get(userId);
+    final reservation = _reservation.get(reservationId);
+    if (user == null || reservation == null) return;
 
-    final reservation = _reservationBox.get(userId);
-    if (reservation == null) return;
+    final schedule = ScheduleLink()
+      ..user.target = user
+      ..reservation.target = reservation;
 
-    user.reservations.add(reservation);
-    _userBox.put(user);
+    _scheduleLink.put(schedule);
     debugPrint('Reserva agendada...');
   }
 
   void saveToFavorite({required int reservationId, required int userId}) {
-    final user = _userBox.get(userId);
-    if (user == null) return;
+    final user = _user.get(userId);
+    final reservation = _reservation.get(reservationId);
+    if (user == null || reservation == null) return;
 
-    final reservation = _reservationBox.get(userId);
-    if (reservation == null) return;
+    final existingLink = _favoriteLink
+        .query(
+          FavoriteLink_.user.equals(userId) &
+              FavoriteLink_.reservation.equals(reservationId),
+        )
+        .build()
+        .findFirst();
 
-    final userFavoriteList = user.favoriteReservations;
-    final existsInFavorites = userFavoriteList.contains(reservation);
-
-    if (!existsInFavorites) {
-      userFavoriteList.add(reservation);
-      debugPrint('Reserva guardada como favorita...');
-    } else {
-      userFavoriteList.remove(reservation);
+    if (existingLink != null) {
+      _favoriteLink.remove(existingLink.id);
       debugPrint('Reserva eliminada de favoritos...');
-    }
+    } else {
+      final favorite = FavoriteLink()
+        ..user.target = user
+        ..reservation.target = reservation;
 
-    _userBox.put(user);
+      _favoriteLink.put(favorite);
+      debugPrint('Reserva guardada como favorita...');
+    }
   }
 
   List<Reservation> getUserReservations({required int userId}) {
-    final user = _userBox.get(userId);
+    final user = _user.get(userId);
     if (user == null) return [];
     debugPrint('Obteniendo lista de reservas para el usuario ${user.name}...');
-    return user.reservations;
+
+    final scheduledReservations = _scheduleLink
+        .query(ScheduleLink_.user.equals(user.objectId))
+        .build()
+        .find();
+
+    return scheduledReservations
+        .map((link) => link.reservation.target)
+        .where((reservation) => reservation != null)
+        .cast<Reservation>()
+        .toList();
   }
 
   List<Reservation> getUserFavoriteReservations({required int userId}) {
-    final user = _userBox.get(userId);
+    final user = _user.get(userId);
     if (user == null) return [];
     debugPrint('Obteniendo lista de favoritos para el usuario ${user.name}...');
-    return user.favoriteReservations;
+
+    final favoriteReservations = _favoriteLink
+        .query(FavoriteLink_.user.equals(user.objectId))
+        .build()
+        .find();
+
+    return favoriteReservations
+        .map((link) => link.reservation.target)
+        .where((reservation) => reservation != null)
+        .cast<Reservation>()
+        .toList();
   }
 }

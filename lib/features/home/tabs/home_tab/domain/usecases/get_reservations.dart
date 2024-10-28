@@ -1,8 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../common/data/models/reservation_model.dart';
-import '../../../common/domain/repositories/reservation_repository.dart';
+import 'package:nolatech_challenge/features/common/data/models/reservation_model.dart';
+import 'package:nolatech_challenge/features/common/domain/repositories/reservation_repository.dart';
 
 @injectable
 class GetReservationsUseCase {

@@ -24,6 +24,15 @@ abstract class AppContextColors {
   static const buttonText = _AppColors.white;
   static const background = _AppColors.white;
 
+  // Bottom Bar
+  static const bottomBarBackground = _AppColors.white;
+  static Color bottomBarBlur = _AppColors.black.withOpacity(0.2);
+  static const bottomBarActiveItem = _AppColors.darkLimeGreen;
+  static const bottomBarInactiveItem = _AppColors.white;
+  static const bottomBarActiveIcon = _AppColors.white;
+  static const bottomBarInactiveIcon = _AppColors.black;
+  static const bottomBarActiveText = _AppColors.white;
+
   // Button
   static const primaryButton = _AppColors.darkLimeGreen;
 
@@ -55,6 +64,7 @@ abstract class AppContextColors {
   static const homeHeaderText = _AppColors.white;
   static const homeDivider = _AppColors.cyanBlue;
   static const carouselReservationBorder = _AppColors.softPeach;
+  static const reservationRowBackground = _AppColors.aliceBlue;
 
   // Reservation
   static const reservationScheduleSectionBackground = _AppColors.aliceBlue;

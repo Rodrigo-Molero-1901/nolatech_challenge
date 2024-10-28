@@ -194,6 +194,24 @@ abstract class AppLocalizations {
   /// **'Ya tengo cuenta  <b>Iniciar sesión</b>'**
   String get r_login_hint;
 
+  /// No description provided for @h_bottom_bar_label_1.
+  ///
+  /// In es, this message translates to:
+  /// **'Inicio'**
+  String get h_bottom_bar_label_1;
+
+  /// No description provided for @h_bottom_bar_label_2.
+  ///
+  /// In es, this message translates to:
+  /// **'Reservas'**
+  String get h_bottom_bar_label_2;
+
+  /// No description provided for @h_bottom_bar_label_3.
+  ///
+  /// In es, this message translates to:
+  /// **'Favoritos'**
+  String get h_bottom_bar_label_3;
+
   /// No description provided for @h_header_title_1.
   ///
   /// In es, this message translates to:

@@ -1,6 +1,8 @@
 export 'common/data/models/user_model.dart';
 export 'common/data/models/reservation_model.dart';
 export 'common/domain/entities/reservation.dart';
+export 'common/domain/entities/favorite_link.dart';
+export 'common/domain/entities/schedule_link.dart';
 export 'common/domain/entities/user.dart';
 export 'common/params/home_params.dart';
 export 'common/params/reservation_params.dart';

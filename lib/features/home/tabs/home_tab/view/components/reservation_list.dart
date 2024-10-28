@@ -1,8 +1,8 @@
-part of '../home_page.dart';
+part of '../home_tab_page.dart';
 
 class _ReservationList extends StatelessWidget {
-  final HomeCubit cubit;
-  final HomeViewModel viewModel;
+  final HomeTabCubit cubit;
+  final HomeTabViewModel viewModel;
 
   const _ReservationList({
     required this.cubit,
@@ -38,11 +38,10 @@ class _ReservationList extends StatelessWidget {
             itemCount: viewModel.carouselReservationViewModels.length,
             separatorBuilder: (_, __) =>
                 const SizedBox(width: AppSpacing.spacing2Dot5x),
-            itemBuilder: (context, index) {
-              final viewModelItem =
-                  viewModel.carouselReservationViewModels[index];
+            itemBuilder: (context, i) {
+              final viewModelItem = viewModel.carouselReservationViewModels[i];
               return _ReservationListItem(
-                onTap: () => cubit.onReservationTapped(pos: index),
+                onTap: () => cubit.onReservationTapped(pos: i),
                 viewModel: viewModelItem,
               );
             },

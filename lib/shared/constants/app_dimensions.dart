@@ -2,6 +2,11 @@ abstract class AppDimensions {
   // Common
   static const horizontalPadding = 32.0;
 
+  // Bottom Bar
+  static const bottomBarVerticalPadding = 5.0;
+  static const bottomBarItemHorizontalPadding = 7.0;
+  static const bottomBarItemVerticalPadding = 3.0;
+
   // Border
   static const borderRadius0 = 0.0;
   static const borderRadius1x = 4.0;
@@ -24,6 +29,7 @@ abstract class AppDimensions {
   static const carouselReservationHorizontalPadding = 15.0;
   static const carouselReservationButtonHeight = 32.0;
   static const carouselReservationButtonWidth = 144.0;
+  static const reservationRowVerticalPadding = 13.0;
 
   // Reservation
   static const reservationHorizontalPadding = 32.0;

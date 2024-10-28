@@ -45,13 +45,7 @@
           "type": 9
         }
       ],
-      "relations": [
-        {
-          "id": "1:6414415473362961583",
-          "name": "users",
-          "targetId": "2:7409338475108926508"
-        }
-      ]
+      "relations": []
     },
     {
       "id": "2:7409338475108926508",
@@ -86,10 +80,70 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "3:6007300013225282654",
+      "lastPropertyId": "3:6083565944430559182",
+      "name": "FavoriteLink",
+      "properties": [
+        {
+          "id": "1:8415960908692658859",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:4532792937845403490",
+          "name": "userId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:8464532788700545662",
+          "relationTarget": "User"
+        },
+        {
+          "id": "3:6083565944430559182",
+          "name": "reservationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "2:7954993229426010145",
+          "relationTarget": "Reservation"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:5407647217594621540",
+      "lastPropertyId": "3:7433358694243872794",
+      "name": "ScheduleLink",
+      "properties": [
+        {
+          "id": "1:7187369152124941206",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:9110931653614356524",
+          "name": "userId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "3:5217423456557762732",
+          "relationTarget": "User"
+        },
+        {
+          "id": "3:7433358694243872794",
+          "name": "reservationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "4:7812577401165715482",
+          "relationTarget": "Reservation"
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "2:7409338475108926508",
-  "lastIndexId": "0:0",
+  "lastEntityId": "4:5407647217594621540",
+  "lastIndexId": "4:7812577401165715482",
   "lastRelationId": "1:6414415473362961583",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
@@ -97,6 +151,8 @@
   "retiredEntityUids": [],
   "retiredIndexUids": [],
   "retiredPropertyUids": [],
-  "retiredRelationUids": [],
+  "retiredRelationUids": [
+    6414415473362961583
+  ],
   "version": 1
 }
