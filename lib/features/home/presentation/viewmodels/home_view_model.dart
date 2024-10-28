@@ -1,7 +1,8 @@
 import '../../../common/data/models/reservation_model.dart';
 import '../../../common/data/models/user_model.dart';
+import '../../../common/params/reservation_params.dart';
+import '../../../common/presentation/viewmodels/user_view_model.dart';
 import 'reservation_carousel_view_model.dart';
-import 'user_view_model.dart';
 
 part 'home_navigation_view_model.dart';
 

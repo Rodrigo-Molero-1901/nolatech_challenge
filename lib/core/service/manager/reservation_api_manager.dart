@@ -34,8 +34,8 @@ class ReservationApiManager {
     required UserModel userModel,
   }) {
     _api.reservationApi.scheduleReservation(
-      reservation: Reservation.fromModel(reservationModel),
-      user: User.fromModel(userModel),
+      reservationId: Reservation.fromModel(reservationModel).objectId,
+      userId: User.fromModel(userModel).objectId,
     );
   }
 
@@ -44,8 +44,8 @@ class ReservationApiManager {
     required UserModel userModel,
   }) {
     _api.reservationApi.saveToFavorite(
-      reservation: Reservation.fromModel(reservationModel),
-      user: User.fromModel(userModel),
+      reservationId: Reservation.fromModel(reservationModel).objectId,
+      userId: User.fromModel(userModel).objectId,
     );
   }
 
@@ -54,7 +54,7 @@ class ReservationApiManager {
   }) {
     try {
       final userReservations = _api.reservationApi.getUserReservations(
-        user: User.fromModel(userModel),
+        userId: User.fromModel(userModel).objectId,
       );
       if (userReservations.isEmpty) return const Left(null);
       return Right(userReservations);
@@ -67,10 +67,9 @@ class ReservationApiManager {
     required UserModel userModel,
   }) {
     try {
-      final favoriteReservations =
-          _api.reservationApi.getUserFavoriteReservations(
-        user: User.fromModel(userModel),
-      );
+      final favoriteReservations = _api.reservationApi
+          .getUserFavoriteReservations(
+              userId: User.fromModel(userModel).objectId);
       if (favoriteReservations.isEmpty) return const Left(null);
       return Right(favoriteReservations);
     } catch (_) {

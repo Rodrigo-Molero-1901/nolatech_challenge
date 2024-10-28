@@ -13,24 +13,43 @@ class _ReservationList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: _listHeight,
-      child: ListView.separated(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppDimensions.homeHorizontalPadding,
+    final l10n = context.l10n;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppDimensions.homeHorizontalPadding,
+          ),
+          child: Text(
+            l10n.h_reservations_section,
+            style: AppTextStyles.title.medium.copyWith(fontSize: 18.0),
+          ),
         ),
-        scrollDirection: Axis.horizontal,
-        itemCount: viewModel.carouselReservationViewModels.length,
-        separatorBuilder: (_, __) =>
-            const SizedBox(width: AppSpacing.spacing2Dot5x),
-        itemBuilder: (context, index) {
-          final viewModelItem = viewModel.carouselReservationViewModels[index];
-          return _ReservationListItem(
-            onTap: () => cubit.onReservationTapped(pos: index),
-            viewModel: viewModelItem,
-          );
-        },
-      ),
+        const SizedBox(height: AppSpacing.spacing2x),
+        SizedBox(
+          height: _listHeight,
+          child: ListView.separated(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppDimensions.homeHorizontalPadding,
+            ),
+            scrollDirection: Axis.horizontal,
+            itemCount: viewModel.carouselReservationViewModels.length,
+            separatorBuilder: (_, __) =>
+                const SizedBox(width: AppSpacing.spacing2Dot5x),
+            itemBuilder: (context, index) {
+              final viewModelItem =
+                  viewModel.carouselReservationViewModels[index];
+              return _ReservationListItem(
+                onTap: () => cubit.onReservationTapped(pos: index),
+                viewModel: viewModelItem,
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: AppSpacing.spacing2Dot5x),
+      ],
     );
   }
 }
@@ -91,7 +110,7 @@ class _ReservationListItem extends StatelessWidget {
               left: AppDimensions.carouselReservationHorizontalPadding,
             ),
             child: Text(
-              l10n.h_reservations_type(viewModel.type),
+              l10n.h_carousel_reservation_type(viewModel.type),
               style: AppTextStyles.body.small,
             ),
           ),

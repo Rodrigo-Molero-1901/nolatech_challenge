@@ -24,4 +24,8 @@ abstract class AppDimensions {
   static const carouselReservationHorizontalPadding = 15.0;
   static const carouselReservationButtonHeight = 32.0;
   static const carouselReservationButtonWidth = 144.0;
+
+  // Reservation
+  static const reservationHorizontalPadding = 32.0;
+  static const reserveButtonBottomPadding = 41.0;
 }

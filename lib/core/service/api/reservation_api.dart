@@ -6,27 +6,29 @@ import '../../utils/mocks.dart';
 
 class ReservationApi {
   final Store _store;
-  late final Box<Reservation> _box;
+  late final Box<User> _userBox;
+  late final Box<Reservation> _reservationBox;
 
   ReservationApi(
     this._store,
   ) {
-    _box = _store.box<Reservation>();
+    _userBox = _store.box<User>();
+    _reservationBox = _store.box<Reservation>();
   }
 
   List<Reservation> getReservations() {
     debugPrint('Obteniendo lista de reservas...');
-    var allReservations = _box.getAll();
+    var allReservations = _reservationBox.getAll();
     if (allReservations.isEmpty) {
       debugPrint('Creando reservas ficticias...');
-      _box.putMany(reservationMockList);
-      allReservations = _box.getAll();
+      _reservationBox.putMany(reservationMockList);
+      allReservations = _reservationBox.getAll();
     }
-    return List.from(allReservations.where((e) => e.users.isEmpty));
+    return allReservations;
   }
 
   Reservation? getReservationById({required int reservationId}) {
-    final reservation = _box
+    final reservation = _reservationBox
         .query(
           Reservation_.objectId.equals(reservationId),
         )
@@ -42,15 +44,25 @@ class ReservationApi {
     return reservation;
   }
 
-  void scheduleReservation(
-      {required Reservation reservation, required User user}) {
+  void scheduleReservation({required int reservationId, required int userId}) {
+    final user = _userBox.get(userId);
+    if (user == null) return;
+
+    final reservation = _reservationBox.get(userId);
+    if (reservation == null) return;
+
     user.reservations.add(reservation);
-    reservation.users.add(user);
-    user.reservations.applyToDb();
-    reservation.users.applyToDb();
+    _userBox.put(user);
+    debugPrint('Reserva agendada...');
   }
 
-  void saveToFavorite({required Reservation reservation, required User user}) {
+  void saveToFavorite({required int reservationId, required int userId}) {
+    final user = _userBox.get(userId);
+    if (user == null) return;
+
+    final reservation = _reservationBox.get(userId);
+    if (reservation == null) return;
+
     final userFavoriteList = user.favoriteReservations;
     final existsInFavorites = userFavoriteList.contains(reservation);
 
@@ -62,15 +74,19 @@ class ReservationApi {
       debugPrint('Reserva eliminada de favoritos...');
     }
 
-    userFavoriteList.applyToDb();
+    _userBox.put(user);
   }
 
-  List<Reservation> getUserReservations({required User user}) {
+  List<Reservation> getUserReservations({required int userId}) {
+    final user = _userBox.get(userId);
+    if (user == null) return [];
     debugPrint('Obteniendo lista de reservas para el usuario ${user.name}...');
     return user.reservations;
   }
 
-  List<Reservation> getUserFavoriteReservations({required User user}) {
+  List<Reservation> getUserFavoriteReservations({required int userId}) {
+    final user = _userBox.get(userId);
+    if (user == null) return [];
     debugPrint('Obteniendo lista de favoritos para el usuario ${user.name}...');
     return user.favoriteReservations;
   }

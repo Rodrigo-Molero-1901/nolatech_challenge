@@ -218,11 +218,11 @@ abstract class AppLocalizations {
   /// **'Canchas'**
   String get h_reservations_section;
 
-  /// No description provided for @h_reservations_type.
+  /// No description provided for @h_carousel_reservation_type.
   ///
   /// In es, this message translates to:
   /// **'Cancha tipo {reservationType}'**
-  String h_reservations_type(String reservationType);
+  String h_carousel_reservation_type(String reservationType);
 
   /// No description provided for @h_reservations_button.
   ///
@@ -241,6 +241,60 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'¡Ups! Parece que todavía no has hecho ninguna reserva ☹️'**
   String get h_empty_scheduled_reservations;
+
+  /// No description provided for @r_reservation_type.
+  ///
+  /// In es, this message translates to:
+  /// **'Cancha tipo {reservationType}'**
+  String r_reservation_type(String reservationType);
+
+  /// No description provided for @r_reservation_add_instructor_label.
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar instructor'**
+  String get r_reservation_add_instructor_label;
+
+  /// No description provided for @r_reservation_set_date_time_subtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Establecer fecha y hora'**
+  String get r_reservation_set_date_time_subtitle;
+
+  /// No description provided for @r_reservation_date_label.
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha'**
+  String get r_reservation_date_label;
+
+  /// No description provided for @r_reservation_init_time_label.
+  ///
+  /// In es, this message translates to:
+  /// **'Hora de inicio'**
+  String get r_reservation_init_time_label;
+
+  /// No description provided for @r_reservation_end_time_label.
+  ///
+  /// In es, this message translates to:
+  /// **'Hora de inicio'**
+  String get r_reservation_end_time_label;
+
+  /// No description provided for @r_reservation_add_comment_subtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar un comentario'**
+  String get r_reservation_add_comment_subtitle;
+
+  /// No description provided for @r_reservation_add_comment_hint.
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar un comentario...'**
+  String get r_reservation_add_comment_hint;
+
+  /// No description provided for @r_reserve_button.
+  ///
+  /// In es, this message translates to:
+  /// **'Reservar'**
+  String get r_reserve_button;
 }
 
 class _AppLocalizationsDelegate

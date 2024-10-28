@@ -3,8 +3,9 @@ import 'package:injectable/injectable.dart';
 
 import '../../common/data/models/reservation_model.dart';
 import '../../common/data/models/user_model.dart';
+import '../../common/domain/usecases/get_user.dart';
+import '../../common/params/reservation_params.dart';
 import '../domain/usecases/get_reservations.dart';
-import '../domain/usecases/get_user.dart';
 import '../domain/usecases/get_user_reservations.dart';
 import 'viewmodels/home_view_model.dart';
 
@@ -25,19 +26,21 @@ class HomeCubit extends Cubit<HomeState> {
         _getUserReservationsUseCase = getUserReservationsUseCase,
         super(HomeInitial());
 
+  late final _userId;
   var _userModel = UserModel();
   var _carouselReservations = <ReservationModel>[];
   var _scheduledReservations = <ReservationModel>[];
 
   void initialize({required int? userId}) {
-    _getLoggedUser(userId ?? 0);
+    _userId = userId ?? 0;
+    _getLoggedUser();
     _getReservations();
     _getUserReservations();
     _emitMain();
   }
 
-  void _getLoggedUser(int userId) {
-    final result = _getUserUseCase.getUserById(userId: userId);
+  void _getLoggedUser() {
+    final result = _getUserUseCase.getUserById(userId: _userId);
     result.fold(
       (error) {},
       (loggedUser) {
@@ -83,11 +86,19 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void onReservationTapped({required int pos}) {
-    // _emitMain(navigation: ReservationNavigation());
+    _emitMain(
+      navigation: ReservationNavigation(
+        params: ReservationParams(
+          userId: _userModel.objectId ?? 0,
+          reservationId: _carouselReservations[pos].objectId ?? 0,
+          onReserveTapped: refresh,
+        ),
+      ),
+    );
   }
 
   void refresh() {
-    _getReservations();
+    _getLoggedUser();
     _getUserReservations();
   }
 }

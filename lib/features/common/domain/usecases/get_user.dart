@@ -1,8 +1,8 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../common/data/models/user_model.dart';
-import '../../../common/domain/repositories/auth_repository.dart';
+import '../../data/models/user_model.dart';
+import '../repositories/auth_repository.dart';
 
 @injectable
 class GetUserUseCase {

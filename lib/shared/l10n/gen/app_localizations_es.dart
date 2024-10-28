@@ -70,7 +70,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get h_reservations_section => 'Canchas';
 
   @override
-  String h_reservations_type(String reservationType) {
+  String h_carousel_reservation_type(String reservationType) {
     return 'Cancha tipo $reservationType';
   }
 
@@ -83,4 +83,33 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get h_empty_scheduled_reservations =>
       '¡Ups! Parece que todavía no has hecho ninguna reserva ☹️';
+
+  @override
+  String r_reservation_type(String reservationType) {
+    return 'Cancha tipo $reservationType';
+  }
+
+  @override
+  String get r_reservation_add_instructor_label => 'Agregar instructor';
+
+  @override
+  String get r_reservation_set_date_time_subtitle => 'Establecer fecha y hora';
+
+  @override
+  String get r_reservation_date_label => 'Fecha';
+
+  @override
+  String get r_reservation_init_time_label => 'Hora de inicio';
+
+  @override
+  String get r_reservation_end_time_label => 'Hora de inicio';
+
+  @override
+  String get r_reservation_add_comment_subtitle => 'Agregar un comentario';
+
+  @override
+  String get r_reservation_add_comment_hint => 'Agregar un comentario...';
+
+  @override
+  String get r_reserve_button => 'Reservar';
 }

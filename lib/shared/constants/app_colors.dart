@@ -14,6 +14,7 @@ abstract class _AppColors {
   static const softPeach = Color(0xFFEEEFF1);
   static const navy = Color(0xFF072340);
   static const mariner = Color(0xFF346BC3);
+  static const aliceBlue = Color(0xFFF4F7FC);
   static const cyanBlue = Color(0xFFEBEFF4);
 }
 
@@ -54,4 +55,7 @@ abstract class AppContextColors {
   static const homeHeaderText = _AppColors.white;
   static const homeDivider = _AppColors.cyanBlue;
   static const carouselReservationBorder = _AppColors.softPeach;
+
+  // Reservation
+  static const reservationScheduleSectionBackground = _AppColors.aliceBlue;
 }

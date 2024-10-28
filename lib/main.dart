@@ -63,6 +63,16 @@ class _MyAppState extends State<MyApp> {
             );
           },
         ),
+        GoRoute(
+          path: Routes.pathReservation,
+          name: Routes.nameReservation,
+          builder: (context, state) {
+            final params = state.extra! as ReservationParams;
+            return injector<ReservationPage>(
+              param1: params,
+            );
+          },
+        ),
       ],
     );
   }
