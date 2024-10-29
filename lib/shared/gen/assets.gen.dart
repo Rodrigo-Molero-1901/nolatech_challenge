@@ -41,6 +41,9 @@ class $AssetsIconsGen {
   SvgGenImage get customArrowBack =>
       const SvgGenImage('assets/icons/custom_arrow_back.svg');
 
+  /// File path: assets/icons/location.svg
+  SvgGenImage get location => const SvgGenImage('assets/icons/location.svg');
+
   /// File path: assets/icons/lock.svg
   SvgGenImage get lock => const SvgGenImage('assets/icons/lock.svg');
 
@@ -68,6 +71,7 @@ class $AssetsIconsGen {
         calendar,
         clock,
         customArrowBack,
+        location,
         lock,
         logo,
         mail,

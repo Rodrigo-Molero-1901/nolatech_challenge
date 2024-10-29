@@ -1,19 +1,16 @@
 part of '../reservation_page.dart';
 
-class _ScheduleSection extends StatefulWidget {
+class _ScheduleSection extends StatelessWidget {
   final ReservationCubit cubit;
   final ReservationViewModel viewModel;
+  final TextEditingController dateController;
 
   const _ScheduleSection({
     required this.cubit,
     required this.viewModel,
+    required this.dateController,
   });
 
-  @override
-  State<_ScheduleSection> createState() => _ScheduleSectionState();
-}
-
-class _ScheduleSectionState extends State<_ScheduleSection> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -32,7 +29,9 @@ class _ScheduleSectionState extends State<_ScheduleSection> {
             style: AppTextStyles.title.medium.copyWith(fontSize: 18.0),
           ),
           const SizedBox(height: AppSpacing.spacing2Dot5x),
-          // Form1
+          TextFormField(
+            controller: dateController,
+          ),
           const SizedBox(height: AppSpacing.spacing2Dot5x),
           // Form2
           const SizedBox(height: AppSpacing.spacing3x),

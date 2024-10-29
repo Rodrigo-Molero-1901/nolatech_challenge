@@ -1,6 +1,6 @@
 part of '../reservation_page.dart';
 
-class _ReservationView extends StatelessWidget {
+class _ReservationView extends StatefulWidget {
   final ReservationCubit cubit;
   final ReservationViewModel viewModel;
 
@@ -8,6 +8,21 @@ class _ReservationView extends StatelessWidget {
     required this.cubit,
     required this.viewModel,
   });
+
+  @override
+  State<_ReservationView> createState() => _ReservationViewState();
+}
+
+class _ReservationViewState extends State<_ReservationView> {
+  final _instructorController = TextEditingController();
+  final _dateController = TextEditingController();
+  final _timeController = TextEditingController();
+  final _commentController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +36,14 @@ class _ReservationView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _InformationSection(
-                  cubit: cubit,
-                  viewModel: viewModel,
+                  cubit: widget.cubit,
+                  viewModel: widget.viewModel,
+                  instructorController: _instructorController,
                 ),
                 _ScheduleSection(
-                  cubit: cubit,
-                  viewModel: viewModel,
+                  cubit: widget.cubit,
+                  viewModel: widget.viewModel,
+                  dateController: _dateController,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -35,7 +52,12 @@ class _ReservationView extends StatelessWidget {
                     bottom: AppDimensions.reserveButtonBottomPadding,
                   ),
                   child: AppButton(
-                    onTap: cubit.onReserveTapped,
+                    onTap: () => widget.cubit.onReserveTapped(
+                      instructor: _instructorController.text,
+                      date: _dateController.text,
+                      time: _timeController.text,
+                      comment: _commentController.text,
+                    ),
                     text: l10n.r_reserve_button,
                     textStyle: AppTextStyles.title.medium.copyWith(
                       fontSize: 18.0,

@@ -99,6 +99,9 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get r_reservation_hour_cost => 'Por hora';
+
+  @override
   String get r_reservation_add_instructor_label => 'Agregar instructor';
 
   @override

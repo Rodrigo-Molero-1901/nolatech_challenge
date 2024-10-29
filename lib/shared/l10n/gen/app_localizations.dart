@@ -266,6 +266,12 @@ abstract class AppLocalizations {
   /// **'Cancha tipo {reservationType}'**
   String r_reservation_type(String reservationType);
 
+  /// No description provided for @r_reservation_hour_cost.
+  ///
+  /// In es, this message translates to:
+  /// **'Por hora'**
+  String get r_reservation_hour_cost;
+
   /// No description provided for @r_reservation_add_instructor_label.
   ///
   /// In es, this message translates to:

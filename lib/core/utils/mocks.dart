@@ -27,3 +27,9 @@ final reservationMockList = [
     comment: '',
   ),
 ];
+
+final instructorMockList = [
+  'Mark Gonzales',
+  'Novak Djokovic',
+  'Roger Federer',
+];

@@ -72,6 +72,9 @@ abstract class AppContextColors {
   static const reservationRowBorder = _AppColors.softPeach;
   static const reservationFavoriteActive = _AppColors.red;
   static const reservationFavoriteInactive = _AppColors.white;
+  static const reservationPriceText = _AppColors.mariner;
+  static const reservationPriceHourCost = _AppColors.starDust;
+  static const reservationSelectorBorder = _AppColors.iridium;
 
   // Reservation List Tab
   static const reservationTabIcon = _AppColors.white;

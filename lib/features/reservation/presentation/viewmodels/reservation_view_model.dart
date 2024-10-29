@@ -25,6 +25,6 @@ class ReservationViewModel {
         type = reservation.type ?? '',
         location = reservation.location ?? '',
         imagePath = reservation.imagesPath ?? [],
-        price = (reservation.price ?? 0).toString(),
+        price = '\$${reservation.price ?? 0}',
         comment = reservation.comment ?? '';
 }

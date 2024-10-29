@@ -104,7 +104,12 @@ class ReservationCubit extends Cubit<ReservationState> {
     );
   }
 
-  void onReserveTapped() {
+  void onReserveTapped({
+    required String instructor,
+    required String date,
+    required String time,
+    required String comment,
+  }) {
     _scheduleReservationUseCase.scheduleReservation(
       reservationModel: _reservationModel,
       userModel: _userModel,

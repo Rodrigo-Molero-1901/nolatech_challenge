@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nolatech_challenge/shared/shared.dart';
 
+import '../../../core/core.dart';
 import '../../common/params/reservation_params.dart';
 import '../presentation/reservation_cubit.dart';
 import '../presentation/viewmodels/reservation_view_model.dart';
