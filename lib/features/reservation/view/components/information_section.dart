@@ -14,11 +14,17 @@ class _InformationSection extends StatefulWidget {
 }
 
 class _InformationSectionState extends State<_InformationSection> {
-  bool _isFavorite = false;
+  late bool _isFavorite;
 
   static const _imageHeight = 270.0;
   static const _arrowBackPos = 30.0;
   static const _heartPos = 30.0;
+
+  @override
+  void initState() {
+    super.initState();
+    _isFavorite = widget.viewModel.isFavorite;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +66,7 @@ class _InformationSectionState extends State<_InformationSection> {
                     ),
                     onPressed: () {
                       setState(() => _isFavorite = !_isFavorite);
+                      widget.cubit.onFavoriteTapped();
                     },
                     color: _isFavorite
                         ? AppContextColors.reservationFavoriteActive

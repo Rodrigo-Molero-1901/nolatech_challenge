@@ -4,11 +4,13 @@ class ReservationRowViewModel {
   final String name;
   final String type;
   final String price;
+  final String location;
   final List<String> imagePath;
 
   ReservationRowViewModel.fromModel(ReservationModel model)
       : name = model.name ?? '',
         type = model.type ?? '',
-        imagePath = model.imagesPath ?? [],
-        price = (model.price ?? 0).toString();
+        price = (model.price ?? 0).toString(),
+        location = model.location ?? '',
+        imagePath = model.imagesPath ?? [];
 }

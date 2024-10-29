@@ -50,6 +50,21 @@ class ReservationRepositoryImpl implements ReservationRepository {
   }
 
   @override
+  Either<void, bool> isFavoriteReservation({
+    required ReservationModel reservationModel,
+    required UserModel userModel,
+  }) {
+    final response = _apiManager.reservationApiManager.isFavoriteReservation(
+      reservationModel: reservationModel,
+      userModel: userModel,
+    );
+    return response.fold(
+      (error) => Left(error),
+      (isFavoriteReservation) => Right(isFavoriteReservation),
+    );
+  }
+
+  @override
   void saveToFavorite({
     required ReservationModel reservationModel,
     required UserModel userModel,
@@ -72,11 +87,10 @@ class ReservationRepositoryImpl implements ReservationRepository {
   }
 
   @override
-  Either<void, List<ReservationModel>> getUserFavoriteReservations({
+  Either<void, List<ReservationModel>> getFavoriteReservations({
     required UserModel userModel,
   }) {
-    final response =
-        _apiManager.reservationApiManager.getUserFavoriteReservations(
+    final response = _apiManager.reservationApiManager.getFavoriteReservations(
       userModel: userModel,
     );
     return response.fold(

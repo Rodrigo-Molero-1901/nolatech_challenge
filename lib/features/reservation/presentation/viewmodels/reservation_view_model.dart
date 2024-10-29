@@ -6,17 +6,19 @@ part 'reservation_navigation_view_model.dart';
 
 class ReservationViewModel {
   final UserViewModel userViewModel;
-  final ReservationNavigationViewModel? navigation;
   final String name;
   final String type;
   final String location;
   final List<String> imagePath;
   final String price;
   final String comment;
+  final bool isFavorite;
+  final ReservationNavigationViewModel? navigation;
 
   ReservationViewModel.fromSuccessState({
     required UserModel user,
     required ReservationModel reservation,
+    required this.isFavorite,
     this.navigation,
   })  : userViewModel = UserViewModel.fromModel(user),
         name = reservation.name ?? '',

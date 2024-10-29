@@ -64,6 +64,21 @@ class ReservationApi {
     debugPrint('Reserva agendada...');
   }
 
+  bool isFavoriteReservation({
+    required int reservationId,
+    required int userId,
+  }) {
+    final favoriteReservation = _favoriteLink
+        .query(
+          FavoriteLink_.user.equals(userId) &
+              FavoriteLink_.reservation.equals(reservationId),
+        )
+        .build()
+        .findFirst();
+
+    return favoriteReservation != null;
+  }
+
   void saveToFavorite({
     required int reservationId,
     required int userId,
@@ -72,7 +87,7 @@ class ReservationApi {
     final reservation = _reservation.get(reservationId);
     if (user == null || reservation == null) return;
 
-    final existingLink = _favoriteLink
+    final favoriteReservation = _favoriteLink
         .query(
           FavoriteLink_.user.equals(userId) &
               FavoriteLink_.reservation.equals(reservationId),
@@ -80,15 +95,15 @@ class ReservationApi {
         .build()
         .findFirst();
 
-    if (existingLink != null) {
-      _favoriteLink.remove(existingLink.id);
+    if (favoriteReservation != null) {
+      _favoriteLink.remove(favoriteReservation.id);
       debugPrint('Reserva eliminada de favoritos...');
     } else {
-      final favorite = FavoriteLink()
+      final newFavoriteReservation = FavoriteLink()
         ..user.target = user
         ..reservation.target = reservation;
 
-      _favoriteLink.put(favorite);
+      _favoriteLink.put(newFavoriteReservation);
       debugPrint('Reserva guardada como favorita...');
     }
   }
@@ -112,7 +127,7 @@ class ReservationApi {
         .toList();
   }
 
-  List<Reservation> getUserFavoriteReservations({
+  List<Reservation> getFavoriteReservations({
     required int userId,
   }) {
     final user = _user.get(userId);

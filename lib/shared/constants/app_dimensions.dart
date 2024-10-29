@@ -39,4 +39,9 @@ abstract class AppDimensions {
   static const reservationTabHorizontalPadding = 26.0;
   static const reservationTabReservationRowVerticalPadding = 14.0;
   static const reservationTabReservationRowHorizontalPadding = 18.0;
+
+  // Favorite List Tab
+  static const favoriteTabHorizontalPadding = 26.0;
+  static const favoriteTabReservationRowVerticalPadding = 14.0;
+  static const favoriteTabReservationRowHorizontalPadding = 18.0;
 }

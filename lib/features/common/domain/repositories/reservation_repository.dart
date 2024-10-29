@@ -12,6 +12,10 @@ abstract class ReservationRepository {
   Either<void, List<ReservationModel>> getUserReservations(
       {required UserModel userModel});
 
+  Either<void, bool> isFavoriteReservation(
+      {required ReservationModel reservationModel,
+      required UserModel userModel});
+
   void saveToFavorite(
       {required ReservationModel reservationModel,
       required UserModel userModel});
@@ -20,10 +24,10 @@ abstract class ReservationRepository {
       {required ReservationModel reservationModel,
       required UserModel userModel});
 
-  Either<void, List<ReservationModel>> getUserFavoriteReservations(
+  Either<void, List<ReservationModel>> getFavoriteReservations(
       {required UserModel userModel});
 
   void deleteScheduledReservation(
       {required ReservationModel reservationModel,
-        required UserModel userModel});
+      required UserModel userModel});
 }

@@ -130,4 +130,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get h_reservation_delete => 'Eliminar';
+
+  @override
+  String get h_my_favorite_reservations => 'Mis reservas favoritas';
+
+  @override
+  String get h_empty_favorite_reservations =>
+      '¡Ups! Parece que no tienes ninguna reserva favorita ☹️';
 }

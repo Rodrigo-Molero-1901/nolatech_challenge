@@ -41,6 +41,21 @@ class ReservationApiManager {
     );
   }
 
+  Either<void, bool> isFavoriteReservation({
+    required ReservationModel reservationModel,
+    required UserModel userModel,
+  }) {
+    try {
+      final isFavorite = _api.reservationApi.isFavoriteReservation(
+        reservationId: Reservation.fromModel(reservationModel).objectId,
+        userId: User.fromModel(userModel).objectId,
+      );
+      return Right(isFavorite);
+    } catch (_) {
+      return const Left(null);
+    }
+  }
+
   void saveToFavorite({
     required ReservationModel reservationModel,
     required UserModel userModel,
@@ -65,13 +80,13 @@ class ReservationApiManager {
     }
   }
 
-  Either<void, List<Reservation>> getUserFavoriteReservations({
+  Either<void, List<Reservation>> getFavoriteReservations({
     required UserModel userModel,
   }) {
     try {
-      final favoriteReservations = _api.reservationApi
-          .getUserFavoriteReservations(
-              userId: User.fromModel(userModel).objectId);
+      final favoriteReservations = _api.reservationApi.getFavoriteReservations(
+        userId: User.fromModel(userModel).objectId,
+      );
       if (favoriteReservations.isEmpty) return const Left(null);
       return Right(favoriteReservations);
     } catch (_) {

@@ -8,6 +8,7 @@ import 'package:nolatech_challenge/di/injection.dart';
 import '../../../../shared/shared.dart';
 import '../../common/params/home_params.dart';
 import '../presentation/home_cubit.dart';
+import '../tabs/favorite_list_tab/view/favorite_list_tab_page.dart';
 import '../tabs/home_tab/view/home_tab_page.dart';
 import '../tabs/reservation_list_tab/view/reservation_list_tab_page.dart';
 
@@ -58,7 +59,9 @@ class _HomePageState extends State<HomePage> {
                     ReservationListTab() => injector<ReservationListTabPage>(
                         param1: widget.params,
                       ),
-                    FavoriteListTab() => Text('ga2'),
+                    FavoriteListTab() => injector<FavoriteListTabPage>(
+                        param1: widget.params,
+                      ),
                   },
                 ),
                 _BottomBar(

@@ -331,6 +331,18 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Eliminar'**
   String get h_reservation_delete;
+
+  /// No description provided for @h_my_favorite_reservations.
+  ///
+  /// In es, this message translates to:
+  /// **'Mis reservas favoritas'**
+  String get h_my_favorite_reservations;
+
+  /// No description provided for @h_empty_favorite_reservations.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Ups! Parece que no tienes ninguna reserva favorita ☹️'**
+  String get h_empty_favorite_reservations;
 }
 
 class _AppLocalizationsDelegate

@@ -59,5 +59,7 @@
   "r_reserve_button": "Reservar",
   "h_schedule_reservation_button": "Programar reserva",
   "h_my_reservations": "Mis reservas",
-  "h_reservation_delete": "Eliminar"
+  "h_reservation_delete": "Eliminar",
+  "h_my_favorite_reservations": "Mis reservas favoritas",
+  "h_empty_favorite_reservations": "¡Ups! Parece que no tienes ninguna reserva favorita ☹️"
 }
