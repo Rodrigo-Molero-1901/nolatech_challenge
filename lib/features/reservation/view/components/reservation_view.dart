@@ -44,6 +44,8 @@ class _ReservationViewState extends State<_ReservationView> {
                   cubit: widget.cubit,
                   viewModel: widget.viewModel,
                   dateController: _dateController,
+                  timeController: _timeController,
+                  commentController: _commentController,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(

@@ -290,17 +290,11 @@ abstract class AppLocalizations {
   /// **'Fecha'**
   String get r_reservation_date_label;
 
-  /// No description provided for @r_reservation_init_time_label.
+  /// No description provided for @r_reservation_time_label.
   ///
   /// In es, this message translates to:
-  /// **'Hora de inicio'**
-  String get r_reservation_init_time_label;
-
-  /// No description provided for @r_reservation_end_time_label.
-  ///
-  /// In es, this message translates to:
-  /// **'Hora de inicio'**
-  String get r_reservation_end_time_label;
+  /// **'Hora'**
+  String get r_reservation_time_label;
 
   /// No description provided for @r_reservation_add_comment_subtitle.
   ///

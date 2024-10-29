@@ -111,10 +111,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get r_reservation_date_label => 'Fecha';
 
   @override
-  String get r_reservation_init_time_label => 'Hora de inicio';
-
-  @override
-  String get r_reservation_end_time_label => 'Hora de inicio';
+  String get r_reservation_time_label => 'Hora';
 
   @override
   String get r_reservation_add_comment_subtitle => 'Agregar un comentario';

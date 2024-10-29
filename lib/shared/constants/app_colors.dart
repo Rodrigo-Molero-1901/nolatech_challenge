@@ -75,6 +75,9 @@ abstract class AppContextColors {
   static const reservationPriceText = _AppColors.mariner;
   static const reservationPriceHourCost = _AppColors.starDust;
   static const reservationSelectorBorder = _AppColors.iridium;
+  static const reservationScheduleColor = _AppColors.white;
+  static const reservationScheduleBorder = _AppColors.softPeach;
+  static const reservationCommentText = _AppColors.starDust;
 
   // Reservation List Tab
   static const reservationTabIcon = _AppColors.white;

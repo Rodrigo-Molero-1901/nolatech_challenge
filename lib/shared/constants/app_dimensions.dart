@@ -36,6 +36,7 @@ abstract class AppDimensions {
   static const reserveButtonBottomPadding = 41.0;
   static const reservationSelectorVerticalPadding = 6.0;
   static const reservationSelectorHorizontalPadding = 12.0;
+  static const reservationFieldPadding = 14.0;
 
   // Reservation List Tab
   static const reservationTabHorizontalPadding = 26.0;

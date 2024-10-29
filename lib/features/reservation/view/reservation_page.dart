@@ -11,9 +11,11 @@ import '../../common/params/reservation_params.dart';
 import '../presentation/reservation_cubit.dart';
 import '../presentation/viewmodels/reservation_view_model.dart';
 
+part 'components/field_card.dart';
 part 'components/information_section.dart';
 part 'components/reservation_navigation.dart';
 part 'components/reservation_view.dart';
+part 'components/schedule_form.dart';
 part 'components/schedule_section.dart';
 
 @injectable
