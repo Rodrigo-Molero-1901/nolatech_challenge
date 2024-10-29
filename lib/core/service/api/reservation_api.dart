@@ -31,7 +31,9 @@ class ReservationApi {
     return allReservations;
   }
 
-  Reservation? getReservationById({required int reservationId}) {
+  Reservation? getReservationById({
+    required int reservationId,
+  }) {
     final reservation = _reservation
         .query(Reservation_.objectId.equals(reservationId))
         .build()
@@ -46,7 +48,10 @@ class ReservationApi {
     return reservation;
   }
 
-  void scheduleReservation({required int reservationId, required int userId}) {
+  void scheduleReservation({
+    required int reservationId,
+    required int userId,
+  }) {
     final user = _user.get(userId);
     final reservation = _reservation.get(reservationId);
     if (user == null || reservation == null) return;
@@ -59,7 +64,10 @@ class ReservationApi {
     debugPrint('Reserva agendada...');
   }
 
-  void saveToFavorite({required int reservationId, required int userId}) {
+  void saveToFavorite({
+    required int reservationId,
+    required int userId,
+  }) {
     final user = _user.get(userId);
     final reservation = _reservation.get(reservationId);
     if (user == null || reservation == null) return;
@@ -85,7 +93,9 @@ class ReservationApi {
     }
   }
 
-  List<Reservation> getUserReservations({required int userId}) {
+  List<Reservation> getUserReservations({
+    required int userId,
+  }) {
     final user = _user.get(userId);
     if (user == null) return [];
     debugPrint('Obteniendo lista de reservas para el usuario ${user.name}...');
@@ -102,7 +112,9 @@ class ReservationApi {
         .toList();
   }
 
-  List<Reservation> getUserFavoriteReservations({required int userId}) {
+  List<Reservation> getUserFavoriteReservations({
+    required int userId,
+  }) {
     final user = _user.get(userId);
     if (user == null) return [];
     debugPrint('Obteniendo lista de favoritos para el usuario ${user.name}...');
@@ -117,5 +129,23 @@ class ReservationApi {
         .where((reservation) => reservation != null)
         .cast<Reservation>()
         .toList();
+  }
+
+  void deleteScheduledReservation({
+    required int userId,
+    required int reservationId,
+  }) {
+    final scheduledReservation = _scheduleLink
+        .query(
+          ScheduleLink_.user.equals(userId) &
+              ScheduleLink_.reservation.equals(reservationId),
+        )
+        .build()
+        .findFirst();
+
+    if (scheduledReservation == null) return;
+
+    _scheduleLink.remove(scheduledReservation.id);
+    debugPrint('Reserva eliminada...');
   }
 }

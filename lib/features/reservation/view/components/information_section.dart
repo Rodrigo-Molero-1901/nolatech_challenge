@@ -1,6 +1,6 @@
 part of '../reservation_page.dart';
 
-class _InformationSection extends StatelessWidget {
+class _InformationSection extends StatefulWidget {
   final ReservationCubit cubit;
   final ReservationViewModel viewModel;
 
@@ -9,8 +9,16 @@ class _InformationSection extends StatelessWidget {
     required this.viewModel,
   });
 
+  @override
+  State<_InformationSection> createState() => _InformationSectionState();
+}
+
+class _InformationSectionState extends State<_InformationSection> {
+  bool _isFavorite = false;
+
   static const _imageHeight = 270.0;
-  static const _imageWidth = double.infinity;
+  static const _arrowBackPos = 30.0;
+  static const _heartPos = 30.0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +31,43 @@ class _InformationSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(
-            viewModel.imagePath.first,
+          SizedBox(
             height: _imageHeight,
-            width: _imageWidth,
-            fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) => const FlutterLogo(),
+            width: double.infinity,
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: Image.asset(
+                    widget.viewModel.imagePath.first,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => const FlutterLogo(),
+                  ),
+                ),
+                Positioned(
+                  top: _arrowBackPos,
+                  left: AppDimensions.horizontalPadding,
+                  child: InkWell(
+                    onTap: context.pop,
+                    child: Assets.icons.customArrowBack.svg(),
+                  ),
+                ),
+                Positioned(
+                  top: _heartPos,
+                  right: AppDimensions.horizontalPadding,
+                  child: IconButton(
+                    icon: Icon(
+                      _isFavorite ? Icons.favorite : Icons.favorite_outline,
+                    ),
+                    onPressed: () {
+                      setState(() => _isFavorite = !_isFavorite);
+                    },
+                    color: _isFavorite
+                        ? AppContextColors.reservationFavoriteActive
+                        : AppContextColors.reservationFavoriteInactive,
+                  ),
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: AppSpacing.spacing3x),
           Padding(
@@ -36,7 +75,7 @@ class _InformationSection extends StatelessWidget {
               left: AppDimensions.reservationHorizontalPadding,
             ),
             child: Text(
-              viewModel.name,
+              widget.viewModel.name,
               style: AppTextStyles.title.medium.copyWith(
                 fontSize: 20.0,
                 fontWeight: FontWeight.w700,
@@ -49,7 +88,7 @@ class _InformationSection extends StatelessWidget {
               left: AppDimensions.reservationHorizontalPadding,
             ),
             child: Text(
-              l10n.r_reservation_type(viewModel.type),
+              l10n.r_reservation_type(widget.viewModel.type),
               style: AppTextStyles.body.small,
             ),
           ),
@@ -69,7 +108,7 @@ class _InformationSection extends StatelessWidget {
               left: AppDimensions.reservationHorizontalPadding,
             ),
             child: Text(
-              viewModel.location,
+              widget.viewModel.location,
               style: AppTextStyles.body.small,
             ),
           ),

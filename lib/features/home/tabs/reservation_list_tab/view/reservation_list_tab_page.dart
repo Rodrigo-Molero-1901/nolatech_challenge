@@ -2,40 +2,35 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
-import 'package:nolatech_challenge/core/core.dart';
 import 'package:nolatech_challenge/shared/shared.dart';
 
 import '../../../../common/params/home_params.dart';
 import '../../../../common/presentation/viewmodels/reservation_row_view_model.dart';
-import '../presentation/home_tab_cubit.dart';
-import '../presentation/viewmodels/home_tab_view_model.dart';
-import '../presentation/viewmodels/reservation_carousel_view_model.dart';
+import '../presentation/reservation_list_tab_cubit.dart';
+import '../presentation/viewmodels/reservation_list_tab_view_model.dart';
 
-part 'components/divider.dart';
-part 'components/header.dart';
-part 'components/home_tab_navigation.dart';
-part 'components/home_tab_view.dart';
-part 'components/reservation_list.dart';
+part 'components/reservation_list_tab_view.dart';
 part 'components/user_reservation_list.dart';
 
 @injectable
-class HomeTabPage extends StatefulWidget {
-  final HomeTabCubit _cubit;
+class ReservationListTabPage extends StatefulWidget {
+  final ReservationListTabCubit _cubit;
   final HomeParams params;
 
-  const HomeTabPage({
-    required HomeTabCubit cubit,
+  const ReservationListTabPage({
+    required ReservationListTabCubit cubit,
     @factoryParam required this.params,
   }) : _cubit = cubit;
 
   @override
-  State<HomeTabPage> createState() => _HomeTabPageState();
+  State<ReservationListTabPage> createState() => _ReservationListTabPageState();
 }
 
-class _HomeTabPageState extends State<HomeTabPage> {
-  late HomeTabCubit _cubit;
+class _ReservationListTabPageState extends State<ReservationListTabPage> {
+  late ReservationListTabCubit _cubit;
 
   @override
   void initState() {
@@ -46,19 +41,19 @@ class _HomeTabPageState extends State<HomeTabPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeTabCubit, HomeTabState>(
+    return BlocConsumer<ReservationListTabCubit, ReservationListTabState>(
       bloc: _cubit,
       listener: (context, state) {
-        if (state case HomeTabMain(:final viewModel)) {
+        if (state case ReservationListTabMain(:final viewModel)) {
           if (viewModel.navigation != null) {
-            viewModel.navigation!.navigate(context);
+            // viewModel.navigation!.navigate(context);
           }
         }
       },
       builder: (context, state) {
         return switch (state) {
-          HomeTabInitial() => const SizedBox.shrink(),
-          HomeTabMain(:final viewModel) => _HomeTabView(
+          ReservationListTabInitial() => const SizedBox.shrink(),
+          ReservationListTabMain(:final viewModel) => _ReservationListTabView(
               cubit: _cubit,
               viewModel: viewModel,
             ),

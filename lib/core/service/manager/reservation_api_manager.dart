@@ -18,7 +18,9 @@ class ReservationApiManager {
     }
   }
 
-  Either<void, Reservation> getReservationById({required int reservationId}) {
+  Either<void, Reservation> getReservationById({
+    required int reservationId,
+  }) {
     try {
       final reservation =
           _api.reservationApi.getReservationById(reservationId: reservationId);
@@ -75,5 +77,15 @@ class ReservationApiManager {
     } catch (_) {
       return const Left(null);
     }
+  }
+
+  void deleteScheduledReservation({
+    required ReservationModel reservationModel,
+    required UserModel userModel,
+  }) {
+    _api.reservationApi.deleteScheduledReservation(
+      reservationId: Reservation.fromModel(reservationModel).objectId,
+      userId: User.fromModel(userModel).objectId,
+    );
   }
 }

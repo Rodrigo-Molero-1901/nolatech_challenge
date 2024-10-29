@@ -5,6 +5,7 @@ import '../../common/data/models/reservation_model.dart';
 import '../../common/data/models/user_model.dart';
 import '../../common/domain/usecases/get_user.dart';
 import '../domain/usecases/get_reservation.dart';
+import '../domain/usecases/save_to_favorite.dart';
 import '../domain/usecases/schedule_reservation.dart';
 import 'viewmodels/reservation_view_model.dart';
 
@@ -14,14 +15,17 @@ part 'reservation_state.dart';
 class ReservationCubit extends Cubit<ReservationState> {
   final GetUserUseCase _getUserUseCase;
   final GetReservationUseCase _getReservationUseCase;
+  final SaveToFavoriteUseCase _saveToFavoriteUseCase;
   final ScheduleReservationUseCase _scheduleReservationUseCase;
 
   ReservationCubit({
     required GetUserUseCase getUserUseCase,
     required GetReservationUseCase getReservationUseCase,
+    required SaveToFavoriteUseCase saveToFavoriteUseCase,
     required ScheduleReservationUseCase scheduleReservationUseCase,
   })  : _getUserUseCase = getUserUseCase,
         _getReservationUseCase = getReservationUseCase,
+        _saveToFavoriteUseCase = saveToFavoriteUseCase,
         _scheduleReservationUseCase = scheduleReservationUseCase,
         super(ReservationInitial());
 
@@ -70,6 +74,13 @@ class ReservationCubit extends Cubit<ReservationState> {
           navigation: navigation,
         ),
       ),
+    );
+  }
+
+  void onFavoriteTapped() {
+    _saveToFavoriteUseCase.saveToFavorite(
+      reservationModel: _reservationModel,
+      userModel: _userModel,
     );
   }
 

@@ -84,4 +84,15 @@ class ReservationRepositoryImpl implements ReservationRepository {
       (reservations) => Right(List.from(reservations.map((e) => e.toModel()))),
     );
   }
+
+  @override
+  void deleteScheduledReservation({
+    required ReservationModel reservationModel,
+    required UserModel userModel,
+  }) {
+    _apiManager.reservationApiManager.deleteScheduledReservation(
+      reservationModel: reservationModel,
+      userModel: userModel,
+    );
+  }
 }

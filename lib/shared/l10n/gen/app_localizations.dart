@@ -313,6 +313,24 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Reservar'**
   String get r_reserve_button;
+
+  /// No description provided for @h_schedule_reservation_button.
+  ///
+  /// In es, this message translates to:
+  /// **'Programar reserva'**
+  String get h_schedule_reservation_button;
+
+  /// No description provided for @h_my_reservations.
+  ///
+  /// In es, this message translates to:
+  /// **'Mis reservas'**
+  String get h_my_reservations;
+
+  /// No description provided for @h_reservation_delete.
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar'**
+  String get h_reservation_delete;
 }
 
 class _AppLocalizationsDelegate

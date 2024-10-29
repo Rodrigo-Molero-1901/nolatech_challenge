@@ -39,8 +39,8 @@ class _UserReservationList extends StatelessWidget {
           ),
         ] else
           ListView.separated(
-            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: viewModel.scheduledReservationViewModels.length,
             separatorBuilder: (_, __) =>
                 const SizedBox(height: AppSpacing.spacing1x),
@@ -77,7 +77,7 @@ class _UserReservationListItem extends StatelessWidget {
     return Container(
       height: _itemHeight,
       padding: const EdgeInsets.symmetric(
-        vertical: AppDimensions.reservationRowVerticalPadding,
+        vertical: AppDimensions.homeTabReservationRowVerticalPadding,
       ),
       color: AppContextColors.reservationRowBackground,
       child: Row(
@@ -124,7 +124,7 @@ class _UserReservationListItem extends StatelessWidget {
                 ],
               )
             ],
-          )
+          ),
         ],
       ),
     );

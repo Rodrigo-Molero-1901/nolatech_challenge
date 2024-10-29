@@ -56,5 +56,8 @@
   "r_reservation_end_time_label": "Hora de inicio",
   "r_reservation_add_comment_subtitle": "Agregar un comentario",
   "r_reservation_add_comment_hint": "Agregar un comentario...",
-  "r_reserve_button": "Reservar"
+  "r_reserve_button": "Reservar",
+  "h_schedule_reservation_button": "Programar reserva",
+  "h_my_reservations": "Mis reservas",
+  "h_reservation_delete": "Eliminar"
 }

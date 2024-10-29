@@ -7,6 +7,7 @@ class AppButton extends StatelessWidget {
   final double width;
   final Color color;
   final TextStyle? textStyle;
+  final Widget? icon;
 
   const AppButton({
     super.key,
@@ -16,6 +17,7 @@ class AppButton extends StatelessWidget {
     this.width = _defaultWidth,
     this.color = AppContextColors.primaryButton,
     this.textStyle,
+    this.icon,
   });
 
   static const _defaultHeight = 53.0;
@@ -36,13 +38,22 @@ class AppButton extends StatelessWidget {
             color: color,
           ),
           child: Center(
-            child: Text(
-              text,
-              style: textStyle ??
-                  AppTextStyles.title.large.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: AppContextColors.buttonText,
-                  ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (icon != null) ...[
+                  icon!,
+                  const SizedBox(width: AppSpacing.spacing1Dot75x),
+                ],
+                Text(
+                  text,
+                  style: textStyle ??
+                      AppTextStyles.title.large.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: AppContextColors.buttonText,
+                      ),
+                ),
+              ],
             ),
           ),
         ),

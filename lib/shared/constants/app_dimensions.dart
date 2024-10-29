@@ -21,7 +21,7 @@ abstract class AppDimensions {
   static const textFieldLabelHorizontalPadding = 12.0;
   static const textFieldInnerTopPadding = 11.5;
 
-  // Home
+  // Home Tab
   static const homeHorizontalPadding = 23.0;
   static const homeDividerBottomPadding = 20.0;
   static const homeHeaderTitleHorizontalPadding = 6.0;
@@ -29,9 +29,14 @@ abstract class AppDimensions {
   static const carouselReservationHorizontalPadding = 15.0;
   static const carouselReservationButtonHeight = 32.0;
   static const carouselReservationButtonWidth = 144.0;
-  static const reservationRowVerticalPadding = 13.0;
+  static const homeTabReservationRowVerticalPadding = 13.0;
 
   // Reservation
   static const reservationHorizontalPadding = 32.0;
   static const reserveButtonBottomPadding = 41.0;
+
+  // Reservation List Tab
+  static const reservationTabHorizontalPadding = 26.0;
+  static const reservationTabReservationRowVerticalPadding = 14.0;
+  static const reservationTabReservationRowHorizontalPadding = 18.0;
 }

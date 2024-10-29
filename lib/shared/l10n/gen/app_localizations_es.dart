@@ -121,4 +121,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get r_reserve_button => 'Reservar';
+
+  @override
+  String get h_schedule_reservation_button => 'Programar reserva';
+
+  @override
+  String get h_my_reservations => 'Mis reservas';
+
+  @override
+  String get h_reservation_delete => 'Eliminar';
 }

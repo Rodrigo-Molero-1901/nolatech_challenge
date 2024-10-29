@@ -22,4 +22,8 @@ abstract class ReservationRepository {
 
   Either<void, List<ReservationModel>> getUserFavoriteReservations(
       {required UserModel userModel});
+
+  void deleteScheduledReservation(
+      {required ReservationModel reservationModel,
+        required UserModel userModel});
 }

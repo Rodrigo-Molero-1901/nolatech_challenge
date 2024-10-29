@@ -4,6 +4,7 @@ abstract class _AppColors {
   static const black = Colors.black;
   static const white = Colors.white;
   static const transparent = Colors.transparent;
+  static const red = Colors.red;
 
   static const darkLimeGreen = Color(0xFF83BC00);
   static const citrusLime = Color(0xFFAAF724);
@@ -52,7 +53,7 @@ abstract class AppContextColors {
   static const forgotPasswordHintText = _AppColors.mariner;
   static const registerHintText = _AppColors.mariner;
 
-  // Home
+  // Home Tab
   static const homeHeaderGradient = [
     _AppColors.navy,
     _AppColors.darkLimeGreen,
@@ -68,4 +69,12 @@ abstract class AppContextColors {
 
   // Reservation
   static const reservationScheduleSectionBackground = _AppColors.aliceBlue;
+  static const reservationRowBorder = _AppColors.softPeach;
+  static const reservationFavoriteActive = _AppColors.red;
+  static const reservationFavoriteInactive = _AppColors.white;
+
+  // Reservation List Tab
+  static const reservationTabIcon = _AppColors.white;
+  static const slidableForeground = _AppColors.white;
+  static const slidableBackground = _AppColors.red;
 }
