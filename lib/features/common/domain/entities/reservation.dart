@@ -1,7 +1,6 @@
 import 'package:objectbox/objectbox.dart';
 
 import '../../data/models/reservation_model.dart';
-import 'user.dart';
 
 @Entity()
 class Reservation {
@@ -12,7 +11,6 @@ class Reservation {
   String location;
   List<String> imagesPath;
   int price;
-  String comment;
 
   Reservation({
     this.objectId = 0,
@@ -21,7 +19,6 @@ class Reservation {
     required this.location,
     required this.imagesPath,
     required this.price,
-    required this.comment,
   });
 
   factory Reservation.fromModel(ReservationModel model) {
@@ -32,7 +29,6 @@ class Reservation {
       location: model.location ?? '',
       imagesPath: model.imagesPath ?? [],
       price: model.price ?? 0,
-      comment: model.comment ?? '',
     );
   }
 
@@ -44,7 +40,6 @@ class Reservation {
       location: location,
       imagesPath: imagesPath,
       price: price,
-      comment: comment,
     );
   }
 }

@@ -5,6 +5,9 @@ class ReservationModel {
   String? location;
   List<String>? imagesPath;
   int? price;
+  String? instructor;
+  String? date;
+  String? time;
   String? comment;
 
   ReservationModel({
@@ -14,6 +17,9 @@ class ReservationModel {
     this.location,
     this.imagesPath,
     this.price,
+    this.instructor,
+    this.date,
+    this.time,
     this.comment,
   });
 }

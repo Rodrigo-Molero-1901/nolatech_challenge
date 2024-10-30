@@ -57,11 +57,6 @@ final _entities = <obx_int.ModelEntity>[
             id: const obx_int.IdUid(6, 5678029305548785169),
             name: 'price',
             type: 6,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(7, 8598965613034956423),
-            name: 'comment',
-            type: 9,
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
@@ -131,14 +126,9 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
       id: const obx_int.IdUid(4, 5407647217594621540),
       name: 'ScheduleLink',
-      lastPropertyId: const obx_int.IdUid(3, 7433358694243872794),
+      lastPropertyId: const obx_int.IdUid(8, 8803458121932827918),
       flags: 0,
       properties: <obx_int.ModelProperty>[
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 7187369152124941206),
-            name: 'id',
-            type: 6,
-            flags: 1),
         obx_int.ModelProperty(
             id: const obx_int.IdUid(2, 9110931653614356524),
             name: 'userId',
@@ -152,7 +142,32 @@ final _entities = <obx_int.ModelEntity>[
             type: 11,
             flags: 520,
             indexId: const obx_int.IdUid(4, 7812577401165715482),
-            relationTarget: 'Reservation')
+            relationTarget: 'Reservation'),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(4, 2325735447383203975),
+            name: 'objectId',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 3940273310036927757),
+            name: 'instructor',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 5276996056395050204),
+            name: 'date',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 7930619785657469072),
+            name: 'time',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(8, 8803458121932827918),
+            name: 'comment',
+            type: 9,
+            flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[])
@@ -199,7 +214,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
       lastSequenceId: const obx_int.IdUid(0, 0),
       retiredEntityUids: const [],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [],
+      retiredPropertyUids: const [8598965613034956423, 7187369152124941206],
       retiredRelationUids: const [6414415473362961583],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -220,7 +235,6 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final locationOffset = fbb.writeString(object.location);
           final imagesPathOffset = fbb.writeList(
               object.imagesPath.map(fbb.writeString).toList(growable: false));
-          final commentOffset = fbb.writeString(object.comment);
           fbb.startTable(8);
           fbb.addInt64(0, object.objectId);
           fbb.addOffset(1, nameOffset);
@@ -228,7 +242,6 @@ obx_int.ModelDefinition getObjectBoxModel() {
           fbb.addOffset(3, locationOffset);
           fbb.addOffset(4, imagesPathOffset);
           fbb.addInt64(5, object.price);
-          fbb.addOffset(6, commentOffset);
           fbb.finish(fbb.endTable());
           return object.objectId;
         },
@@ -249,16 +262,13 @@ obx_int.ModelDefinition getObjectBoxModel() {
               .vTableGet(buffer, rootOffset, 12, []);
           final priceParam =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0);
-          final commentParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 16, '');
           final object = Reservation(
               objectId: objectIdParam,
               name: nameParam,
               type: typeParam,
               location: locationParam,
               imagesPath: imagesPathParam,
-              price: priceParam,
-              comment: commentParam);
+              price: priceParam);
 
           return object;
         }),
@@ -343,24 +353,45 @@ obx_int.ModelDefinition getObjectBoxModel() {
         toOneRelations: (ScheduleLink object) =>
             [object.user, object.reservation],
         toManyRelations: (ScheduleLink object) => {},
-        getId: (ScheduleLink object) => object.id,
+        getId: (ScheduleLink object) => object.objectId,
         setId: (ScheduleLink object, int id) {
-          object.id = id;
+          object.objectId = id;
         },
         objectToFB: (ScheduleLink object, fb.Builder fbb) {
-          fbb.startTable(4);
-          fbb.addInt64(0, object.id);
+          final instructorOffset = fbb.writeString(object.instructor);
+          final dateOffset = fbb.writeString(object.date);
+          final timeOffset = fbb.writeString(object.time);
+          final commentOffset = fbb.writeString(object.comment);
+          fbb.startTable(9);
           fbb.addInt64(1, object.user.targetId);
           fbb.addInt64(2, object.reservation.targetId);
+          fbb.addInt64(3, object.objectId);
+          fbb.addOffset(4, instructorOffset);
+          fbb.addOffset(5, dateOffset);
+          fbb.addOffset(6, timeOffset);
+          fbb.addOffset(7, commentOffset);
           fbb.finish(fbb.endTable());
-          return object.id;
+          return object.objectId;
         },
         objectFromFB: (obx.Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-
-          final object = ScheduleLink()
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final objectIdParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
+          final instructorParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 12, '');
+          final dateParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 14, '');
+          final timeParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 16, '');
+          final commentParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 18, '');
+          final object = ScheduleLink(
+              objectId: objectIdParam,
+              instructor: instructorParam,
+              date: dateParam,
+              time: timeParam,
+              comment: commentParam);
           object.user.targetId =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0);
           object.user.attach(store);
@@ -399,10 +430,6 @@ class Reservation_ {
   /// See [Reservation.price].
   static final price =
       obx.QueryIntegerProperty<Reservation>(_entities[0].properties[5]);
-
-  /// See [Reservation.comment].
-  static final comment =
-      obx.QueryStringProperty<Reservation>(_entities[0].properties[6]);
 }
 
 /// [User] entity fields to define ObjectBox queries.
@@ -444,15 +471,31 @@ class FavoriteLink_ {
 
 /// [ScheduleLink] entity fields to define ObjectBox queries.
 class ScheduleLink_ {
-  /// See [ScheduleLink.id].
-  static final id =
-      obx.QueryIntegerProperty<ScheduleLink>(_entities[3].properties[0]);
-
   /// See [ScheduleLink.user].
   static final user =
-      obx.QueryRelationToOne<ScheduleLink, User>(_entities[3].properties[1]);
+      obx.QueryRelationToOne<ScheduleLink, User>(_entities[3].properties[0]);
 
   /// See [ScheduleLink.reservation].
   static final reservation = obx.QueryRelationToOne<ScheduleLink, Reservation>(
-      _entities[3].properties[2]);
+      _entities[3].properties[1]);
+
+  /// See [ScheduleLink.objectId].
+  static final objectId =
+      obx.QueryIntegerProperty<ScheduleLink>(_entities[3].properties[2]);
+
+  /// See [ScheduleLink.instructor].
+  static final instructor =
+      obx.QueryStringProperty<ScheduleLink>(_entities[3].properties[3]);
+
+  /// See [ScheduleLink.date].
+  static final date =
+      obx.QueryStringProperty<ScheduleLink>(_entities[3].properties[4]);
+
+  /// See [ScheduleLink.time].
+  static final time =
+      obx.QueryStringProperty<ScheduleLink>(_entities[3].properties[5]);
+
+  /// See [ScheduleLink.comment].
+  static final comment =
+      obx.QueryStringProperty<ScheduleLink>(_entities[3].properties[6]);
 }

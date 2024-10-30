@@ -38,6 +38,10 @@ class ReservationApiManager {
     _api.reservationApi.scheduleReservation(
       reservationId: Reservation.fromModel(reservationModel).objectId,
       userId: User.fromModel(userModel).objectId,
+      instructor: reservationModel.instructor ?? '',
+      date: reservationModel.date ?? '',
+      time: reservationModel.time ?? '',
+      comment: reservationModel.comment ?? '',
     );
   }
 

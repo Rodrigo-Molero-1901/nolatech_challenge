@@ -8,7 +8,6 @@ final reservationMockList = [
     location: 'Vía Av. Caracas y Av. P.º Caroni',
     imagesPath: List.generate(3, (_) => Assets.images.field1.path),
     price: 25,
-    comment: '',
   ),
   Reservation(
     name: 'Rusty Tenis',
@@ -16,7 +15,6 @@ final reservationMockList = [
     location: 'Vía Av. Caracas y Av. P.º Caroni',
     imagesPath: List.generate(3, (_) => Assets.images.field2.path),
     price: 40,
-    comment: '',
   ),
   Reservation(
     name: 'Sport Box',
@@ -24,7 +22,6 @@ final reservationMockList = [
     location: 'Vía Av. Caracas y Av. P.º Caroni',
     imagesPath: List.generate(3, (_) => Assets.images.field3.path),
     price: 50,
-    comment: '',
   ),
 ];
 

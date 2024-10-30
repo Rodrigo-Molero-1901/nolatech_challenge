@@ -110,6 +110,12 @@ class ReservationCubit extends Cubit<ReservationState> {
     required String time,
     required String comment,
   }) {
+    _reservationModel
+      ..instructor = instructor
+      ..date = date
+      ..time = time
+      ..comment = comment;
+
     _scheduleReservationUseCase.scheduleReservation(
       reservationModel: _reservationModel,
       userModel: _userModel,

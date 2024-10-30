@@ -6,10 +6,20 @@ import 'user.dart';
 @Entity()
 class ScheduleLink {
   @Id()
-  int id = 0;
+  int objectId = 0;
+  String instructor;
+  String date;
+  String time;
+  String comment;
 
   final user = ToOne<User>();
   final reservation = ToOne<Reservation>();
 
-  ScheduleLink();
+  ScheduleLink({
+    this.objectId = 0,
+    required this.instructor,
+    required this.date,
+    required this.time,
+    required this.comment,
+  });
 }

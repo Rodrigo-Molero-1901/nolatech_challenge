@@ -51,12 +51,21 @@ class ReservationApi {
   void scheduleReservation({
     required int reservationId,
     required int userId,
+    required String instructor,
+    required String date,
+    required String time,
+    required String comment,
   }) {
     final user = _user.get(userId);
     final reservation = _reservation.get(reservationId);
     if (user == null || reservation == null) return;
 
-    final schedule = ScheduleLink()
+    final schedule = ScheduleLink(
+      instructor: instructor,
+      date: date,
+      time: time,
+      comment: comment,
+    )
       ..user.target = user
       ..reservation.target = reservation;
 
@@ -160,7 +169,7 @@ class ReservationApi {
 
     if (scheduledReservation == null) return;
 
-    _scheduleLink.remove(scheduledReservation.id);
+    _scheduleLink.remove(scheduledReservation.objectId);
     debugPrint('Reserva eliminada...');
   }
 }
